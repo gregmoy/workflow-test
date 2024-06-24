@@ -5,15 +5,15 @@ on:
       cron_expression:
         description: 'cron expressoin'
         required: true
-        default: '1 1 1 1 *'
+        default: '0 0 2 * *'
         type: string
 
 jobs:
-  schedule:
+  scheudle:
     runs-on: ubuntu-latest
     steps:
       # - run: do-the-thing.sh
-      - uses: gregmoy/set-cron-schedule-action@main
+      - uses: gr2m/set-cron-schedule-action@v2
         with:
           token: ${{ secrets.PAT_WITH_WORKFLOW_SCOPE }}
           cron: ${{ inputs.cron_expression }}

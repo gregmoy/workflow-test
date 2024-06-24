@@ -1,0 +1,24 @@
+name: Cron Scheduler
+on:
+  workflow_dispatch:
+    inputs:
+      cron_expression:
+        description: 'cron expressoin'
+        required: true
+        default: '0 0 * * *'
+        type: string
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      # - run: do-the-thing.sh
+      - uses: gr2m/set-cron-schedule-action@v2
+        with:
+          token: ${{ secrets.PAT_WITH_WORKFLOW_SCOPE }}
+          cron: ${{ inputs.cron_expression }}
+          # optional: set workflow id or file name
+          workflow: run-script.yml
+          # optional: Defaults to "ci($WORKFLOW_NAME): update cron schedule: $CRON_EXPRESSIONS".
+          #           $WORKFLOW_NAME and $CRON_EXPRESSIONS will be replaced.
+          message: "update cron "

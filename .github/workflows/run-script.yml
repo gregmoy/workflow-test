@@ -1,7 +1,7 @@
 name: Run script
 on:
   schedule:
-    - cron: "2 2 2 2 *"
+    - cron: 0 0 2 * *
 jobs:
   reminder:
     runs-on: ubuntu-latest
